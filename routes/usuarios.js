@@ -4,10 +4,11 @@ const { check } = require('express-validator');
 // const { validarCampos } = require('../middlewares/validar-campos');
 // const { validarJWT } = require('../middlewares/validar-jwt');
 // const { esAdminRol, tieneRole } = require('../middlewares/validar-roles');
-const {validarCampos,
-    validarJWT,
-    esAdminRol, 
-    tieneRole} = require('../middlewares/validar-campos');
+const {validarCampos} = require('../middlewares/validar-campos');
+const {validarCorreoCambio,
+    validarTelefonoCambio} = require('../middlewares/validar-cambios');
+const {validarJWT} = require('../middlewares/validar-jwt');
+
 
 const {usuarioGet,
     usuariosPut,
@@ -15,9 +16,7 @@ const {usuarioGet,
     usuariosDelete,
     usuariosPatch} = require('../controllers/usuarios');
 
-const { esRolValido, 
-        existeEmail,
-        existeUsuarioPorId,
+const { existeEmail,
         existeTelefono} = require('../helpers/db-validators');
 
 
@@ -25,22 +24,20 @@ const router = Router();
 
 //CAMBIAR GET PARA QUE SE PUEDA HACER LA VALIDACIÓN DEL USUARIO CON EL JWT
 //QUE NO SEA NECESARIO ENVIAR EL ID, EL USUARIO SOLO PODRÁ OBTENER SU INFORMACIÓN
-router.get('/:id',[
-    check('id', 'No es un ID válido').isMongoId(),
-    check('id').custom(existeUsuarioPorId),
+router.get('/',[
+    validarJWT,
     validarCampos
 ], usuarioGet);
 
 //CAMBIAR PUT PARA QUE SE PUEDA HACER LA VALIDACIÓN DEL USUARIO CON EL JWT
 //QUE NO SEA NECESARIO ENVIAR EL ID, EL USUARIO SOLO PODRÁ CAMBIAR SU INFORMACIÓN
-router.put('/:id',[
-    check('id', 'No es un ID válido').isMongoId(),
-    check('id').custom(existeUsuarioPorId),
+router.put('/',[
+    validarJWT,
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
     check('correo', 'El correo no es válido').isEmail(),
-    check('correo').custom( existeEmail ),
+    validarCorreoCambio,
     check('telefono', 'El telefono debe ser de 10 digitos').isLength(10),
-    check('telefono').custom( existeTelefono ),
+    validarTelefonoCambio,
     validarCampos    
 ], usuariosPut);
 

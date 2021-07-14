@@ -6,8 +6,14 @@ const Usuario = require('../models/usuario');
 
  const usuarioGet =async (req, res = response) =>
  {
-    const {id} = req.params;
-    const {nombre, correo, contrasenia, telefono} = await Usuario.findById(id)
+    if(!req.usuario)
+    {
+        return res.status(500).json(
+        {
+            msg: 'Se quiere validar el token primero'
+        });
+    }
+    const {nombre, correo, telefono} = req.usuario;
     res.json({
         nombre, 
         correo,  
@@ -34,11 +40,14 @@ const Usuario = require('../models/usuario');
 
  const usuariosPut = async (req, res = response) =>
  {
-    const {id} = req.params;
-    const info = req.body;
+    const id = req.usuario._id;
 
-    const usuario = await Usuario.findByIdAndUpdate(id, info);
-    res.json(usuario);
+    const {nombre, telefono} = req.body;
+    const correo = req.body.correo.toLowerCase();
+    const usuario = {nombre, telefono, correo}
+
+    const cambios = await Usuario.findByIdAndUpdate(id, usuario);
+    res.json(cambios);
 }
 
 const usuariosPatch = (req, res = response) =>
