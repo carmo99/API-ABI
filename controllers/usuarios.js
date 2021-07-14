@@ -4,27 +4,21 @@ const bcryptjs = require('bcryptjs');
 const Usuario = require('../models/usuario');
 
 
- const usuariosGet =async (req, res = response) =>
+ const usuarioGet =async (req, res = response) =>
  {
-    const {limite = 5, desde = 0} = req.query;
-    const query = {estado:true};
-
-    const [ total, usuarios] = await Promise.all([
-        Usuario.countDocuments(query),
-        Usuario.find(query)
-            .skip(Number(desde))
-            .limit(Number(limite))
-    ])
-
-     res.json({
-        total,
-        usuarios
+    const {id} = req.params;
+    const {nombre, correo, contrasenia, telefono} = await Usuario.findById(id)
+    res.json({
+        nombre, 
+        correo,  
+        telefono
     });
  }
 
  const usuariosPost = async (req, res = response) =>
  {
-    const {nombre, correo, contrasenia, telefono} = req.body;
+    const {nombre, contrasenia, telefono} = req.body;
+    const correo = req.body.correo.toLowerCase();
     const usuario = new Usuario({nombre, correo, contrasenia, telefono});
     
     //Encriptar la contraseña
@@ -41,15 +35,9 @@ const Usuario = require('../models/usuario');
  const usuariosPut = async (req, res = response) =>
  {
     const {id} = req.params;
-    const { _id, contrasenia, google, correo, ...resto} = req.body;
+    const info = req.body;
 
-    if(contrasenia)
-    {
-        const salt = bcryptjs.genSaltSync();
-        resto.contrasenia = bcryptjs.hashSync(contrasenia, salt);
-    }
-
-    const usuario = await Usuario.findByIdAndUpdate(id, resto);
+    const usuario = await Usuario.findByIdAndUpdate(id, info);
     res.json(usuario);
 }
 
@@ -72,10 +60,9 @@ const usuariosDelete = async(req, res = response) =>
     res.json(usuario);
 }
  module.exports = {
-    usuariosGet,
+    usuarioGet,
     usuariosPost,
     usuariosPut,
     usuariosPatch,
     usuariosDelete
-
  }
