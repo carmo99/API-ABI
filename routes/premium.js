@@ -1,23 +1,17 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 
-// const { validarCampos } = require('../middlewares/validar-campos');
-// const { validarJWT } = require('../middlewares/validar-jwt');
-// const { esAdminRol, tieneRole } = require('../middlewares/validar-roles');
 const {validarCampos} = require('../middlewares/validar-campos');
-const {validarCorreoCambio,
-    validarTelefonoCambio} = require('../middlewares/validar-cambios');
+
+const {validarContacto, 
+    validarEspacio} = require('../middlewares/validar-cambios');
+
 const {validarJWT} = require('../middlewares/validar-jwt');
 
 
-const {usuarioGet,
-    usuariosPut,
-    usuariosPost,
-    usuariosDelete,
-    usuariosPatch} = require('../controllers/premium');
+const {cambiarMensaje,
+    agregarContacto,} = require('../controllers/premium');
 
-const { existeEmail,
-        existeTelefono} = require('../helpers/db-validators');
 const { esPremiumRole } = require('../middlewares/validar-roles');
 
 
@@ -32,10 +26,20 @@ const router = Router();
 
 //CAMBIAR PUT PARA QUE SE PUEDA HACER LA VALIDACIÓN DEL USUARIO CON EL JWT
 //QUE NO SEA NECESARIO ENVIAR EL ID, EL USUARIO SOLO PODRÁ CAMBIAR SU INFORMACIÓN
-router.put('/',[
+router.put('/mensaje/',[
     validarJWT,
+    esPremiumRole,
+    check('mensajeAyuda', 'El mensaje de ayuda no debe estar vacio').not().isEmpty(),
     validarCampos    
-], usuariosPut);
+], cambiarMensaje);
+
+router.put('/contactoNuevo', [
+    validarJWT,
+    esPremiumRole,
+    validarEspacio,
+    validarContacto
+], agregarContacto)
+
 
 // router.post('/',[
 //     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
@@ -46,12 +50,6 @@ router.put('/',[
 //     check('telefono').custom( existeTelefono ),
 //     validarCampos
 // ] , usuariosPost);
-
-router.delete('/',[
-    validarJWT,
-    esPremiumRole,
-
-], usuariosDelete);
 
 
 module.exports = router;

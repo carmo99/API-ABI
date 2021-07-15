@@ -36,6 +36,16 @@ const usuarioSchema = Schema({
         type: Schema.Types.ObjectId,
         ref: 'Usuario',
     },
+    contactoEmergencia2:
+    {
+        type: Schema.Types.ObjectId,
+        ref: 'Usuario',
+    },
+    contactoEmergencia3:
+    {
+        type: Schema.Types.ObjectId,
+        ref: 'Usuario',
+    },
     fotoDia: {
         type: String
     },
@@ -44,8 +54,6 @@ const usuarioSchema = Schema({
         required: [true, 'El mensaje es obligatorio'],
         default: 'Necesito de tu ayuda, entra lo antes posible a la aplicación de ABI',
     }
-
-
 });
 
 usuarioSchema.methods.toJSON = function()

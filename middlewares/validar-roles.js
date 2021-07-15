@@ -12,7 +12,7 @@ const esPremiumRole = (req, res = response, next) => {
 
     if ( rol != 'PREMIUM_ROLE') {
         return res.status(401).json({
-            msg:`${nombre} no es administrador- No puede hacer esto`
+            msg:`${nombre} no es Premium - No puede hacer esto`
         });
     }
 

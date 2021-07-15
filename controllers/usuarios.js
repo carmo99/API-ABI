@@ -50,20 +50,9 @@ const Usuario = require('../models/usuario');
     res.json(cambios);
 }
 
-const usuariosPatch = (req, res = response) =>
-{
-    res.json({
-        msg: 'patch API - Controlador'
-    });
-}
-
 const usuariosDelete = async(req, res = response) =>
 {
-    const {id} = req.params;
-
-    //Fisicamente lo borramos
-    //const usuario = await Usuario.findByIdAndDelete(id);
-
+    const id = req.usuario._id;
     const usuario = await Usuario.findByIdAndUpdate(id, {estado:false});
 
     res.json(usuario);
@@ -72,6 +61,5 @@ const usuariosDelete = async(req, res = response) =>
     usuarioGet,
     usuariosPost,
     usuariosPut,
-    usuariosPatch,
     usuariosDelete
  }
