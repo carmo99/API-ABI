@@ -12,10 +12,12 @@ const {validarJWT} = require('../middlewares/validar-jwt');
 const {usuarioGet,
     usuariosPut,
     usuariosPost,
-    usuariosDelete} = require('../controllers/usuarios');
+    usuariosDelete,
+    registrarGadget} = require('../controllers/usuarios');
 
 const { existeEmail,
-        existeTelefono} = require('../helpers/db-validators');
+        existeTelefono,
+        existeGadget} = require('../helpers/db-validators');
 
 const router = Router();
 
@@ -33,6 +35,15 @@ router.put('/',[
     validarTelefonoCambio,
     validarCampos    
 ], usuariosPut);
+
+router.put('/gadget',[
+    validarJWT,
+    check('gadget', 'No es un ID de Gadget Valido').isMongoId(),
+    check('gadget').custom(existeGadget),
+    validarCampos    
+], registrarGadget);
+
+
 
 router.post('/',[
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),

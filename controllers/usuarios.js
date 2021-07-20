@@ -2,6 +2,7 @@ const { response } = require('express');
 const bcryptjs = require('bcryptjs');
 
 const Usuario = require('../models/usuario');
+const Gadget = require('../models/gadget');
 
 
  const usuarioGet =async (req, res = response) =>
@@ -56,9 +57,19 @@ const usuariosDelete = async(req, res = response) =>
     const usuario = await Usuario.findByIdAndUpdate(id, {estado:false});
     res.json(usuario);
 }
+
+const registrarGadget = async (req, res = response) => {
+    const id = req.usuario._id;
+    let usuario = await Usuario.findByIdAndUpdate(id, {gadget:req.body.gadget});
+    usuario = await Usuario.findByIdAndUpdate(id, {rol:'PREMIUM_ROLE'});
+    const gadget = await Gadget.findByIdAndUpdate(req.body.gadget, {gadget:false});
+    res.json(usuario);
+}
+
  module.exports = {
     usuarioGet,
     usuariosPost,
     usuariosPut,
-    usuariosDelete
+    usuariosDelete,
+    registrarGadget
  }

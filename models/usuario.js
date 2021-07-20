@@ -53,6 +53,10 @@ const usuarioSchema = Schema({
         type: String,
         required: [true, 'El mensaje es obligatorio'],
         default: 'Necesito de tu ayuda, entra lo antes posible a la aplicación de ABI',
+    },
+    gadget:{
+        type: Schema.Types.ObjectId,
+        ref: 'Gadget',
     }
 });
 

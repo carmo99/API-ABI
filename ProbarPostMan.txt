@@ -108,3 +108,16 @@ GET {{url}}/api/premium/foto
 
 Headers: 
 x-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MGYwNWJkZDQ5MmExMjk3ODEyZjI3NWMiLCJpYXQiOjE2MjYzNjUwNzksImV4cCI6MTYyNjM3OTQ3OX0.3vROIpxE1XfW0s1ngLyJT-A8RjBwuQvigmj3q-g0XiM
+
+
+***** Registrar Gadget ******
+
+Ruta:
+PUT {{url}}/api/usuarios/gadget
+
+{
+    "gadget": "60f70e9a696206db14c0614d"
+}
+
+Headers: 
+x-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MGYwNWJkZDQ5MmExMjk3ODEyZjI3NWMiLCJpYXQiOjE2MjYzNjUwNzksImV4cCI6MTYyNjM3OTQ3OX0.3vROIpxE1XfW0s1ngLyJT-A8RjBwuQvigmj3q-g0XiM

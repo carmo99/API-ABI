@@ -1,9 +1,9 @@
 const Role = require('../models/role');
 const Usuario = require('../models/usuario');
+const Gadget = require('../models/gadget');
 
 const esRolValido = async (rol= '') => 
 {
-    console.log(rol);
     const existeRol = await Role.findOne({rol});
 
     if(!existeRol)
@@ -18,6 +18,20 @@ const existeEmail = async (correo = '')=>
     if(existeemail)
     {
         throw new Error(`El correo ${correo} ya está registrado`)
+    }
+}
+
+const existeGadget = async (id = '') => 
+{
+    const existeGadget = await Gadget.findById(id);
+
+    if(!existeGadget)
+    {
+        throw new Error(`El gadget con id ${id} no está definido en la base de datos`);
+    }
+    if(!existeGadget.gadget)
+    {
+        throw new Error(`El gadget con id ${id} ya ha sido registrado anteriormente`);
     }
 }
 
@@ -60,6 +74,7 @@ module.exports={
     existeEmail,
     //existeEmail_Cambio,
     existeUsuarioPorId,
-    existeTelefono
+    existeTelefono,
+    existeGadget
 }
 
