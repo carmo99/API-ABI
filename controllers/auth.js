@@ -33,7 +33,7 @@ const login = async (req, res = response) => {
         const validaContrasenia = bcryptjs.compareSync( contrasenia, usuario.contrasenia );
         if ( !validaContrasenia) {
             return res.status(400).json({ 
-                msg: 'Usuario / passwor incorrectos '
+                msg: 'Usuario / password incorrectos '
             });
         }
 

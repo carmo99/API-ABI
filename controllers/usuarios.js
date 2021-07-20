@@ -54,7 +54,6 @@ const usuariosDelete = async(req, res = response) =>
 {
     const id = req.usuario._id;
     const usuario = await Usuario.findByIdAndUpdate(id, {estado:false});
-
     res.json(usuario);
 }
  module.exports = {

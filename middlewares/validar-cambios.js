@@ -10,7 +10,7 @@ const validarCorreoCambio = async(req=request, res= response, next) =>
             msg: 'Se quiere validar el token primero'
         });
     }
-    const correo = req.body.correo;
+    const correo = req.body.correo.toLowerCase();
 
     if(req.usuario.correo != req.body.correo)
     {

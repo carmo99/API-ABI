@@ -12,7 +12,7 @@ cloudinary.config( process.env.CLOUDINARY_URL );
 const Usuario = require('../models/usuario');
 
  const cambiarMensaje = async (req, res = response) =>
- {
+{
     const mensajeAyuda = req.body;
     const id = req.usuario._id;
     const cambios = await Usuario.findByIdAndUpdate(id, mensajeAyuda);
@@ -84,7 +84,6 @@ const mostrarImagen = async ( req, res = response) => {
     }
 
     if ( usuario.fotoDia ) {
-        //Hay que borrar la imagen del servidor
         const url = usuario.fotoDia;
         
         return res.json({
@@ -92,9 +91,7 @@ const mostrarImagen = async ( req, res = response) => {
         })
         
     }
-
     const pathImagen = path.join( __dirname, '../assets/no-image.jpg');
-
     return res.sendFile( pathImagen );
 
 }

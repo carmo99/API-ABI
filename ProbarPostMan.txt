@@ -1,0 +1,110 @@
+***** Crear Usuario ******
+
+Ruta:
+POST {{url}}/api/usuarios
+
+Body ejemplo:
+{
+    "nombre": "Contacto 3",
+    "correo": "contacto3@gmail.com",
+    "contrasenia": "12345678",
+    "telefono": "0000000003"
+}
+
+
+***** Actualizar Usuario ******
+
+Ruta:
+PUT {{url}}/api/usuarios
+
+Body ejemplo:
+{
+    "nombre": "Carlos Ignacio Perez Olvera",
+    "correo": "alanmunive@gmail.com",
+    "telefono": "5561811574"
+}
+
+Headers: 
+x-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MGYwNWJkZDQ5MmExMjk3ODEyZjI3NWMiLCJpYXQiOjE2MjYzNjUwNzksImV4cCI6MTYyNjM3OTQ3OX0.3vROIpxE1XfW0s1ngLyJT-A8RjBwuQvigmj3q-g0XiM
+
+
+***** LogIn ******
+
+Ruta:
+POST {{url}}/api/auth/login
+
+Body ejemplo:
+{
+    "correo": "alanmunive@gmail.com",
+    "contrasenia":"12345678"
+}
+
+
+***** Obtener Info Usuario ******
+
+Ruta:
+GET {{url}}/api/usuarios
+
+Headers: 
+x-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MGYwNWJkZDQ5MmExMjk3ODEyZjI3NWMiLCJpYXQiOjE2MjYzNjUwNzksImV4cCI6MTYyNjM3OTQ3OX0.3vROIpxE1XfW0s1ngLyJT-A8RjBwuQvigmj3q-g0XiM
+
+
+***** Actualizar Mensaje ******
+
+Ruta:
+PUT {{url}}/api/premium/mensaje
+
+Body ejemplo:
+{
+    "mensajeAyuda": "Hola contacto de emergencia, estoy en una situación de peligro"
+}
+
+Headers: 
+x-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MGYwNWJkZDQ5MmExMjk3ODEyZjI3NWMiLCJpYXQiOjE2MjYzNjUwNzksImV4cCI6MTYyNjM3OTQ3OX0.3vROIpxE1XfW0s1ngLyJT-A8RjBwuQvigmj3q-g0XiM
+
+
+***** Borrar Usuario ******
+
+Ruta:
+DEL {{url}}/api/usuarios
+
+Headers: 
+x-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MGYwNWJkZDQ5MmExMjk3ODEyZjI3NWMiLCJpYXQiOjE2MjYzNjUwNzksImV4cCI6MTYyNjM3OTQ3OX0.3vROIpxE1XfW0s1ngLyJT-A8RjBwuQvigmj3q-g0XiM
+
+
+***** Agregar Contacto ******
+
+Ruta:
+PUT {{url}}/api/premium/contactoNuevo
+
+Body ejemplo:
+{
+    "correo": "contacto3@gmail.com",
+    "telefono": "0000000003"
+}
+
+Headers: 
+x-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MGYwNWJkZDQ5MmExMjk3ODEyZjI3NWMiLCJpYXQiOjE2MjYzNjUwNzksImV4cCI6MTYyNjM3OTQ3OX0.3vROIpxE1XfW0s1ngLyJT-A8RjBwuQvigmj3q-g0XiM
+
+
+***** Actualizar Foto ******
+
+Ruta:
+PUT {{url}}/api/premium/foto
+
+Body ejemplo:
+{
+    archivo: File (Foto)
+}
+
+Headers: 
+x-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MGYwNWJkZDQ5MmExMjk3ODEyZjI3NWMiLCJpYXQiOjE2MjYzNjUwNzksImV4cCI6MTYyNjM3OTQ3OX0.3vROIpxE1XfW0s1ngLyJT-A8RjBwuQvigmj3q-g0XiM
+
+
+***** Actualizar Foto ******
+
+Ruta:
+GET {{url}}/api/premium/foto
+
+Headers: 
+x-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MGYwNWJkZDQ5MmExMjk3ODEyZjI3NWMiLCJpYXQiOjE2MjYzNjUwNzksImV4cCI6MTYyNjM3OTQ3OX0.3vROIpxE1XfW0s1ngLyJT-A8RjBwuQvigmj3q-g0XiM

@@ -61,16 +61,4 @@ router.get('/foto',[
     validarCampos
 ],mostrarImagen);
 
-
-// router.post('/',[
-//     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
-//     check('correo', 'El correo no es válido').isEmail(),
-//     check('correo').custom( existeEmail ),
-//     check('contrasenia', 'La contraseña debe de ser mayor o igual a 8 caracteres').isLength({min: 8}),
-//     check('telefono', 'El telefono debe ser de 10 digitos').isLength(10),
-//     check('telefono').custom( existeTelefono ),
-//     validarCampos
-// ] , usuariosPost);
-
-
 module.exports = router;
