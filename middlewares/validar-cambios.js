@@ -1,4 +1,5 @@
 const {response, request} = require('express');
+const bcryptjs = require('bcryptjs');
 
 const Usuario = require('../models/usuario');
 
@@ -137,10 +138,25 @@ const validarEspacio = async(req=request, res= response, next) =>
     next();
 }
 
+const validarContrasenia = async(req=request, res= response, next) => {
+
+    const contrasenia = req.body.contrasenia;
+
+    const validaContrasenia = bcryptjs.compareSync(contrasenia, req.usuario.contrasenia);
+    if (!validaContrasenia) {
+        return res.status(400).json({
+            msg: `La contraseña anterior no coincide`
+        });
+    }
+
+    next();
+
+}
 module.exports =
 {
     validarCorreoCambio,
     validarTelefonoCambio,
     validarContacto,
-    validarEspacio
+    validarEspacio,
+    validarContrasenia
 }

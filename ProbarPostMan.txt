@@ -121,3 +121,19 @@ PUT {{url}}/api/usuarios/gadget
 
 Headers: 
 x-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MGYwNWJkZDQ5MmExMjk3ODEyZjI3NWMiLCJpYXQiOjE2MjYzNjUwNzksImV4cCI6MTYyNjM3OTQ3OX0.3vROIpxE1XfW0s1ngLyJT-A8RjBwuQvigmj3q-g0XiM
+
+
+****** Cambiar Contrasenia ******
+
+Ruta:
+PUT {{url}}/api/usuarios/contrasenia
+
+Body:
+{
+    "contrasenia": "cambiomicontrasenia",
+    "contraseniaNueva" : "estaeslanuevacontrasenia"
+}
+
+Headers:
+x-token: 
+

@@ -4,7 +4,8 @@ const { check } = require('express-validator');
 const {validarCampos} = require('../middlewares/validar-campos');
 
 const {validarCorreoCambio,
-    validarTelefonoCambio} = require('../middlewares/validar-cambios');
+    validarTelefonoCambio,
+    validarContrasenia} = require('../middlewares/validar-cambios');
 
 const {validarJWT} = require('../middlewares/validar-jwt');
 
@@ -13,7 +14,8 @@ const {usuarioGet,
     usuariosPut,
     usuariosPost,
     usuariosDelete,
-    registrarGadget} = require('../controllers/usuarios');
+    registrarGadget,
+    cambiarContraseña} = require('../controllers/usuarios');
 
 const { existeEmail,
         existeTelefono,
@@ -43,7 +45,12 @@ router.put('/gadget',[
     validarCampos    
 ], registrarGadget);
 
-
+router.put('/contrasenia',[
+    validarJWT,
+    validarContrasenia,
+    check('contraseniaNueva', 'La contraseña debe de ser mayor o igual a 8 caracteres').isLength({min: 8}),
+    validarCampos    
+], cambiarContraseña);
 
 router.post('/',[
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
