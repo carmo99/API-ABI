@@ -150,10 +150,16 @@ Body:
     "clasificacion": "I_LEGAL"
 }
 
+Headers:
+x-token: 
+
 ***** Subir Foto Informacion ******
 
 Ruta:
 POST {{url}}/api/informacion/60f8d0491844676e642cdbde
+
+Headers:
+x-token: 
 
 Body - form-data:
 key: archivo

@@ -24,6 +24,8 @@ router.post('/',[
 ], subirInformacion);
 
 router.post('/:id',[
+    validarJWT,
+    esAdminRole,
     check('id','No es un ID valido').isMongoId(),
     check('id').custom( existeInfoId ),
     validarArchivoSubir,
