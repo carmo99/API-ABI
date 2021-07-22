@@ -40,7 +40,17 @@ const subirFotoInfo = async (req, res = response) => {
     })
 }
 
+const obtenerNoticia = async (req, res = response) =>
+{
+    const {id} =  req.params;
+    const {titulo, contenido, foto} = await Informacion.findById( id );
+    res.json({
+        titulo, contenido, foto
+    });
+}
+
 module.exports = {
     subirInformacion, 
-    subirFotoInfo
+    subirFotoInfo,
+    obtenerNoticia
 }
