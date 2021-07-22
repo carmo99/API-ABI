@@ -13,6 +13,7 @@ class Server{
             auth : '/api/auth',
             premium: '/api/premium',
             categorias: '/api/categorias',
+            informacion: '/api/informacion',
             productos: '/api/productos',
             usuarios : '/api/usuarios',
             uploads : '/api/uploads',
@@ -57,6 +58,7 @@ class Server{
         this.app.use(this.paths.auth, require('../routes/auth'));
     //    this.app.use(this.paths.buscar, require('../routes/buscar'));
     //    this.app.use(this.paths.categorias, require('../routes/categorias'));
+        this.app.use(this.paths.informacion, require('../routes/informacion'));
         this.app.use(this.paths.premium, require('../routes/premium'));
         this.app.use(this.paths.usuarios, require('../routes/usuarios'));
     //    this.app.use(this.paths.uploads, require('../routes/uploads'));    

@@ -137,3 +137,24 @@ Body:
 Headers:
 x-token: 
 
+
+****** Subir Informacion ******
+
+Ruta:
+POST {{url}}/api/informacion
+
+Body:
+{
+    "titulo": "Noticia 5",
+    "contenido": "is simply dummy text of the printing and typesetting industry. Loremo",
+    "clasificacion": "I_LEGAL"
+}
+
+***** Subir Foto Informacion ******
+
+Ruta:
+POST {{url}}/api/informacion/60f8d0491844676e642cdbde
+
+Body - form-data:
+key: archivo
+value: miarchivo.bmp 
