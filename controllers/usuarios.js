@@ -4,6 +4,9 @@ const bcryptjs = require('bcryptjs');
 const Usuario = require('../models/usuario');
 const Gadget = require('../models/gadget');
 
+const cloudinary = require('cloudinary').v2;
+cloudinary.config( process.env.CLOUDINARY_URL );
+
 
 const usuarioGet = async (req, res = response) => {
     if (!req.usuario) {
@@ -75,11 +78,28 @@ const cambiarContraseña = async (req, res = response) => {
     res.json(usuario);
 }
 
+const subirFotoPerfil = async (req, res = response) => {
+
+    const usuario = req.usuario;
+    
+    const { tempFilePath } = req.files.archivo;
+    const { secure_url }= await cloudinary.uploader.upload( tempFilePath, {folder: 'fotosPerfil'} );
+
+    usuario.fotoPerfil = secure_url;
+
+    await usuario.save();
+
+    res.json({
+        usuario
+    })
+}
+
 module.exports = {
     usuarioGet,
     usuariosPost,
     usuariosPut,
     usuariosDelete,
     registrarGadget,
-    cambiarContraseña
+    cambiarContraseña,
+    subirFotoPerfil
 }

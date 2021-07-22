@@ -164,3 +164,15 @@ x-token:
 Body - form-data:
 key: archivo
 value: miarchivo.bmp 
+
+****** Subir foto de perfil ******
+
+Ruta:
+POST {{url}}/api/usuarios/foto
+
+Headers:
+x-token:   token_usuario_autenticado
+
+Body - form-data:
+key: archivo
+value: miarchivo.bmp
