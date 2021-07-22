@@ -1,6 +1,8 @@
 const Role = require('../models/role');
 const Usuario = require('../models/usuario');
 const Gadget = require('../models/gadget');
+const Clasificacion = require('../models/clasificacion');
+const Informacion = require('../models/informacion');
 
 const esRolValido = async (rol= '') => 
 {
@@ -9,6 +11,13 @@ const esRolValido = async (rol= '') =>
     if(!existeRol)
     {
         throw new Error(`El rol ${rol} no está definido en la base de datos`)
+    }
+}
+
+const esClasificacionValida = async (clasificacion = '') =>{
+    const existeClas = await Clasificacion.findOne({clasificacion});
+    if (!existeClas) {
+       throw new Error(`La clasificación ${ clasificacion } no está registrada en la base de datos`);
     }
 }
 
@@ -69,12 +78,21 @@ const existeTelefono = async (telefono = '')=>
     }
 }
 
+const existeInfoId = async( id ) => {
+    const existeInfo = await Informacion.findById( id );
+    if (!existeInfo) {
+        throw new Error(`El id ${id} no existe`);
+    }
+}
+
 module.exports={
     esRolValido,
     existeEmail,
     //existeEmail_Cambio,
     existeUsuarioPorId,
     existeTelefono,
-    existeGadget
+    existeGadget,
+    esClasificacionValida,
+    existeInfoId
 }
 
