@@ -72,6 +72,7 @@ router.post('/foto',[
 ], subirFotoPerfil);
 
 router.delete('/',[
+    validarJWT,
 ], usuariosDelete);
 
 module.exports = router;
