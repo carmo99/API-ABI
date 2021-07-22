@@ -3,23 +3,26 @@ const { check } = require('express-validator');
 
 const {validarCampos} = require('../middlewares/validar-campos');
 
-const {validarCorreoCambio,
-    validarTelefonoCambio,
-    validarContrasenia} = require('../middlewares/validar-cambios');
+const { validarCorreoCambio,
+        validarTelefonoCambio,
+        validarContrasenia} = require('../middlewares/validar-cambios');
 
 const {validarJWT} = require('../middlewares/validar-jwt');
 
 
-const {usuarioGet,
-    usuariosPut,
-    usuariosPost,
-    usuariosDelete,
-    registrarGadget,
-    cambiarContraseña} = require('../controllers/usuarios');
+const { usuarioGet,
+        usuariosPut,
+        usuariosPost,
+        usuariosDelete,
+        registrarGadget,
+        cambiarContraseña,
+        subirFotoPerfil} = require('../controllers/usuarios');
 
 const { existeEmail,
         existeTelefono,
         existeGadget} = require('../helpers/db-validators');
+const { validarArchivoSubir } = require('../middlewares/validar-archivo');
+const { extensionValida } = require('../middlewares/validar-extension');
 
 const router = Router();
 
@@ -62,8 +65,13 @@ router.post('/',[
     validarCampos
 ] , usuariosPost);
 
-router.delete('/',[
+router.post('/foto',[
     validarJWT,
+    validarArchivoSubir,
+    extensionValida,
+], subirFotoPerfil);
+
+router.delete('/',[
 ], usuariosDelete);
 
 module.exports = router;
