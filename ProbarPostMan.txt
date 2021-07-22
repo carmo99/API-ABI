@@ -176,3 +176,8 @@ x-token:   token_usuario_autenticado
 Body - form-data:
 key: archivo
 value: miarchivo.bmp
+
+****** Obtener una noticia ******
+
+Ruta:
+GET {{url}}/api/informacion/60f8d0491844676e642cdbde
