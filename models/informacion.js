@@ -7,14 +7,14 @@ const informacionSchema = Schema({
     },
     contenido: {
         type: String,
-        required: [true, 'El contenido es obligatorio'],
+        required: [true, 'El contenido es obligatorio']
     },
     foto: {
-        type: String,
+        type: String
     },
     clasificacion: {
         type: String,
-        required: [true, 'La clasificacion es obligatoria'],
+        required: [true, 'La clasificacion es obligatoria']
     }
 });
 
