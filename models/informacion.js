@@ -20,7 +20,7 @@ const informacionSchema = Schema({
 
 informacionSchema.methods.toJSON = function()
 {
-    const {__v, ...informacion } = this.toObject();
+    const {__v, clasificacion, _id, ...informacion } = this.toObject();
     return informacion;
 }
 

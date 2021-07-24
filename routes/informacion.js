@@ -3,7 +3,8 @@ const { Router } = require('express');
 const { check } = require('express-validator');
 const { subirInformacion, 
         subirFotoInfo,
-        obtenerNoticia } = require('../controllers/informacion');
+        obtenerNoticia, 
+        obtenerNoticias} = require('../controllers/informacion');
 const { esClasificacionValida, existeInfoId } = require('../helpers/db-validators');
 const { validarArchivoSubir } = require('../middlewares/validar-archivo');
 
@@ -40,6 +41,8 @@ router.get('/:id', [
     check('id').custom(existeInfoId),
     validarCampos
 ], obtenerNoticia)
+
+router.get('/', obtenerNoticias);
 
 module.exports = router;
 

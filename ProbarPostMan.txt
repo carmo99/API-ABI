@@ -181,3 +181,14 @@ value: miarchivo.bmp
 
 Ruta:
 GET {{url}}/api/informacion/60f8d0491844676e642cdbde
+
+
+****** Obtener noticias por clasificacion *******
+
+GET {{url}}/api/informacion
+
+
+Body: 
+{
+    "clasificacion" : "I_LEGAL"
+}

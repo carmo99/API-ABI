@@ -49,8 +49,27 @@ const obtenerNoticia = async (req, res = response) =>
     });
 }
 
+const obtenerNoticias = async (req, res = response) =>
+{
+    const clasificacion = req.body.clasificacion;
+    const {limite = 5, desde=0} = req.query;
+    const query = {clasificacion} //Extraemos solo los usuarios activos
+
+    const [ total, noticias ] = await Promise.all([
+        Informacion.countDocuments(query),
+        Informacion.find(query)
+            .skip(Number(desde))
+            .limit(Number(limite))
+    ]);
+    //const {titulo, contenido, foto} = await Informacion.findById( id );
+    res.json({
+        total, noticias
+    });
+}
+
 module.exports = {
     subirInformacion, 
     subirFotoInfo,
-    obtenerNoticia
+    obtenerNoticia,
+    obtenerNoticias
 }
