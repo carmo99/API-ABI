@@ -17,6 +17,7 @@ const { esAdminRole } = require('../middlewares/validar-roles');
 
 const router = Router();
 
+//Subir Info
 router.post('/',[
     validarJWT,
     esAdminRole,
@@ -26,6 +27,7 @@ router.post('/',[
     validarCampos
 ], subirInformacion);
 
+//Ponerle foto a una info
 router.post('/:id',[
     validarJWT,
     esAdminRole,
