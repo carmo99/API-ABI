@@ -4,6 +4,8 @@ const bcryptjs = require('bcryptjs');
 const Usuario = require('../models/usuario');
 const Gadget = require('../models/gadget');
 
+const { generarJWT } = require('../helpers/generaJWT');
+
 const cloudinary = require('cloudinary').v2;
 cloudinary.config( process.env.CLOUDINARY_URL );
 
@@ -33,8 +35,13 @@ const usuariosPost = async (req, res = response) => {
     usuario.contrasenia = bcryptjs.hashSync(contrasenia, salt);
     await usuario.save();
 
+    const {id} = await Usuario.findOne({correo});
+
+    const token = await generarJWT( id );
+
     res.json({
-        usuario
+        usuario,
+        token
     });
 }
 
