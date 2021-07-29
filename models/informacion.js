@@ -10,7 +10,8 @@ const informacionSchema = Schema({
         required: [true, 'El contenido es obligatorio']
     },
     foto: {
-        type: String
+        type: String,
+        default: 'https://res.cloudinary.com/fotosdeabi/image/upload/v1627525548/FotoInfoDia/itlhu9mwkbvqqtyu2dqc.png'
     },
     clasificacion: {
         type: String,
