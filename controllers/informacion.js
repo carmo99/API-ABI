@@ -27,7 +27,15 @@ const subirFotoInfo = async (req, res = response) => {
     }else{
         carpeta = 'FotoInfoDia';
     }
+    if ( usuario.fotoDia ) {
+        //Hay que borrar la imagen del servidor
+        const nombrArr  = usuario.fotoDia.split('/');
+        const nombre    = nombrArr[ nombrArr.length - 1 ];
+        const[ public_id ] = nombre.split('.');
 
+        cloudinary.uploader.destroy( public_id, {page: carpeta} );
+       
+    }
     const { tempFilePath } = req.files.archivo;
     const { secure_url }= await cloudinary.uploader.upload( tempFilePath, {folder: carpeta} );
     

@@ -20,7 +20,8 @@ const usuarioSchema = Schema({
         required: [true, 'El telefono es obligatorio']
     },
     fotoPerfil: {
-        type: String
+        type: String,
+        default: 'https://res.cloudinary.com/fotosdeabi/image/upload/v1627942363/Predefinidas/kisspng-computer-icons-user-profile-clip-art-portable-netw-c-svg-png-icon-free-download-389-86-onlineweb-5c6f7efd8fecb7.6156919015508108775895_cktuws.jpg'
     },
     rol: {
         type: String,

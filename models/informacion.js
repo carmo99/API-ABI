@@ -11,7 +11,7 @@ const informacionSchema = Schema({
     },
     foto: {
         type: String,
-        default: 'https://res.cloudinary.com/fotosdeabi/image/upload/v1627525548/FotoInfoDia/itlhu9mwkbvqqtyu2dqc.png'
+        default: 'https://res.cloudinary.com/fotosdeabi/image/upload/v1627942064/Predefinidas/Default_s8uyk0.png'
     },
     clasificacion: {
         type: String,
