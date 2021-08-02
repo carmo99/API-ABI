@@ -88,9 +88,16 @@ const cambiarContraseña = async (req, res = response) => {
 const subirFotoPerfil = async (req, res = response) => {
 
     const usuario = req.usuario;
+    if ( usuario.fotoPerfil ) {
+        const nombreArr = usuario.fotoPerfil.split('/');
+        const nombre    = nombreArr[nombreArr.length - 1];
+        const [ public_id ] = nombre.split('.');
+        cloudinary.uploader.destroy( public_id ,function(error,result) {
+            console.log(result, error) });
+    }
     
     const { tempFilePath } = req.files.archivo;
-    const { secure_url }= await cloudinary.uploader.upload( tempFilePath, {folder: 'fotosPerfil'} );
+    const { secure_url }= await cloudinary.uploader.upload( tempFilePath );
 
     usuario.fotoPerfil = secure_url;
 

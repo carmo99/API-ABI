@@ -21,15 +21,17 @@ const subirFotoInfo = async (req, res = response) => {
 
     const informacion = await Informacion.findById(id);
     
-    let carpeta;
-    if (informacion.clasificacion === 'I_LEGAL' ) {
-        carpeta = 'FotoInfoLegal';
-    }else{
-        carpeta = 'FotoInfoDia';
+    //Limpiar imagene previas
+    if ( informacion.foto ) {
+        const nombreArr = informacion.foto.split('/');
+        const nombre    = nombreArr[nombreArr.length - 1];
+        const [ public_id ] = nombre.split('.');
+        cloudinary.uploader.destroy( public_id ,function(error,result) {
+            console.log(result, error) });
     }
 
     const { tempFilePath } = req.files.archivo;
-    const { secure_url }= await cloudinary.uploader.upload( tempFilePath, {folder: carpeta} );
+    const { secure_url }= await cloudinary.uploader.upload( tempFilePath );
     
     informacion.foto = secure_url;
 
