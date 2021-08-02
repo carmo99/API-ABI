@@ -92,8 +92,7 @@ const subirFotoPerfil = async (req, res = response) => {
         const nombreArr = usuario.fotoPerfil.split('/');
         const nombre    = nombreArr[nombreArr.length - 1];
         const [ public_id ] = nombre.split('.');
-        cloudinary.uploader.destroy( public_id ,function(error,result) {
-            console.log(result, error) });
+        cloudinary.uploader.destroy( public_id );
     }
     
     const { tempFilePath } = req.files.archivo;

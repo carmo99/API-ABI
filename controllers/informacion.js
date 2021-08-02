@@ -35,7 +35,7 @@ const subirFotoInfo = async (req, res = response) => {
         const nombre    = nombrArr[ nombrArr.length - 1 ];
         const[ public_id ] = nombre.split('.');
 
-        cloudinary.uploader.destroy( public_id, {page: carpeta} );
+        cloudinary.uploader.destroy( public_id );
        
     }
     const { tempFilePath } = req.files.archivo;
