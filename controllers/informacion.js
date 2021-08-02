@@ -51,7 +51,8 @@ const obtenerNoticia = async (req, res = response) =>
 
 const obtenerNoticias = async (req, res = response) =>
 {
-    const clasificacion = req.body.clasificacion;
+    //const clasificacion = req.body.clasificacion;
+    const clasificacion = "I_DIA";
     const {limite = 5, desde=0} = req.query;
     const query = {clasificacion} //Extraemos solo los usuarios activos
 

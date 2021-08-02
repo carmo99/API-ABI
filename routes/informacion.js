@@ -44,10 +44,7 @@ router.get('/:id', [
     validarCampos
 ], obtenerNoticia)
 
-router.get('/',[
-    check('clasificacion').custom( esClasificacionValida ),
-    validarCampos
-], obtenerNoticias);
+router.get('/', obtenerNoticias);
 
 module.exports = router;
 
