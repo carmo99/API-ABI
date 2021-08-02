@@ -44,7 +44,7 @@ router.get('/:id', [
     validarCampos
 ], obtenerNoticia)
 
-router.get('/',[
+router.get('/todas/:clasificacion',[
     check('clasificacion').custom( esClasificacionValida ),
     validarCampos
 ], obtenerNoticias);
