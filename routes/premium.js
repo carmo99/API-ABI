@@ -23,15 +23,6 @@ const { extensionValida } = require('../middlewares/validar-extension');
 
 const router = Router();
 
-// //CAMBIAR GET PARA QUE SE PUEDA HACER LA VALIDACIÓN DEL USUARIO CON EL JWT
-// //QUE NO SEA NECESARIO ENVIAR EL ID, EL USUARIO SOLO PODRÁ OBTENER SU INFORMACIÓN
-// router.get('/',[
-//     validarJWT,
-//     validarCampos
-// ], usuarioGet);
-
-//CAMBIAR PUT PARA QUE SE PUEDA HACER LA VALIDACIÓN DEL USUARIO CON EL JWT
-//QUE NO SEA NECESARIO ENVIAR EL ID, EL USUARIO SOLO PODRÁ CAMBIAR SU INFORMACIÓN
 router.put('/mensaje/',[
     validarJWT,
     esPremiumRole,
