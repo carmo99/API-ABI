@@ -21,7 +21,7 @@ const usuarioSchema = Schema({
     },
     fotoPerfil: {
         type: String,
-        default: 'https://res.cloudinary.com/fotosdeabi/image/upload/v1627942363/Predefinidas/kisspng-computer-icons-user-profile-clip-art-portable-netw-c-svg-png-icon-free-download-389-86-onlineweb-5c6f7efd8fecb7.6156919015508108775895_cktuws.jpg'
+        default: 'https://res.cloudinary.com/fotosdeabi/image/upload/v1629154529/Predefinidas/abi_muestra_show_border_white_2_rhgc1f.png'
     },
     rol: {
         type: String,

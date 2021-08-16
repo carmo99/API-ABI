@@ -39,9 +39,13 @@ const login = async (req, res = response) => {
 
         //Generamos el JWT
         const token = await generarJWT( usuario.id );
+        const persona = await Usuario.findById(usuario.id)
+                .populate('contactoEmergencia1', ['nombre', 'fotoPerfil', 'telefono', 'correo'])
+                .populate('contactoEmergencia2', ['nombre', 'fotoPerfil', 'telefono', 'correo'])
+                .populate('contactoEmergencia3', ['nombre', 'fotoPerfil', 'telefono', 'correo'])
 
         res.json({
-            usuario,
+            'usuario':persona,
             token
         })
         
@@ -59,9 +63,13 @@ const verificarSesion = async (req, res) => {
 
         const usuario = await Usuario.findById(id);
         const token = await generarJWT( usuario.id );
+        const persona = await Usuario.findById(usuario.id)
+                .populate('contactoEmergencia1', ['nombre', 'fotoPerfil', 'telefono', 'correo'])
+                .populate('contactoEmergencia2', ['nombre', 'fotoPerfil', 'telefono', 'correo'])
+                .populate('contactoEmergencia3', ['nombre', 'fotoPerfil', 'telefono', 'correo'])
 
         res.json({
-            usuario,
+            'usuario':persona,
             token
         })
     } catch (error) {

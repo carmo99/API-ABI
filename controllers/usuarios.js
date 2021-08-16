@@ -38,11 +38,15 @@ const usuariosPost = async (req, res = response) => {
     const {id} = await Usuario.findOne({correo});
 
     const token = await generarJWT( id );
+    const persona = await Usuario.findById(usuario.id)
+            .populate('contactoEmergencia1', ['nombre', 'fotoPerfil', 'telefono', 'correo'])
+            .populate('contactoEmergencia2', ['nombre', 'fotoPerfil', 'telefono', 'correo'])
+            .populate('contactoEmergencia3', ['nombre', 'fotoPerfil', 'telefono', 'correo'])
 
     res.json({
-        usuario,
+        'usuario':persona,
         token
-    });
+    })
 }
 
 
