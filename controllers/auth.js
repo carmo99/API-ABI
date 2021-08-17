@@ -104,15 +104,15 @@ const generarOTP = async (req, res = response) =>
     const transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-          user: 'jocaes911@gmail.com',
-          pass: 'muokfmdepckopbnt'
+          user: process.env.USUARIO_MAIL,
+          pass: process.env.CONTRASENIA_MAIL
         }
       });
     const otp = otpGenerator.generate(10, { upperCase: false, specialChars: false });
 
     const mensaje = `Hola ${usuario.nombre}, este es tu código de verificación de correo: ${otp}`;
     const mailOptions = {
-        from: 'soporte@abi.com',
+        from: 'jocaes911@gmail.com',
         to: usuario.correo,
         subject: 'Validación de correo',
         text: mensaje
