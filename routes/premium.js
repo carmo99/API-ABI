@@ -13,8 +13,8 @@ const {validarJWT} = require('../middlewares/validar-jwt');
 const { cambiarMensaje,
         agregarContacto,
         actualizarImagen,
-        mostrarImagen
-} = require('../controllers/premium');
+        mostrarImagen,
+        obtenerContactos} = require('../controllers/premium');
 
 const { esPremiumRole } = require('../middlewares/validar-roles');
 const { validarArchivoSubir } = require('../middlewares/validar-archivo');
@@ -51,5 +51,12 @@ router.get('/foto',[
     esPremiumRole,
     validarCampos
 ],mostrarImagen);
+
+router.get('/contactos',
+[
+    validarJWT,
+    esPremiumRole,
+    validarCampos
+], obtenerContactos);
 
 module.exports = router;

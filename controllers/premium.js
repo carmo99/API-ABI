@@ -95,9 +95,24 @@ const mostrarImagen = async ( req, res = response) => {
     return res.sendFile( pathImagen );
 
 }
+
+const obtenerContactos = async (req, res = response) =>
+{
+    const usuario = await Usuario.findById(req.usuario.id)
+            .populate('contactoEmergencia1', ['nombre', 'fotoPerfil', 'telefono', 'correo'])
+            .populate('contactoEmergencia2', ['nombre', 'fotoPerfil', 'telefono', 'correo'])
+            .populate('contactoEmergencia3', ['nombre', 'fotoPerfil', 'telefono', 'correo'])
+
+    res.json({
+        'contactoEmergencia1':usuario.contactoEmergencia1,
+        'contactoEmergencia2':usuario.contactoEmergencia2,
+        'contactoEmergencia3':usuario.contactoEmergencia3
+    })
+}
  module.exports = {
     cambiarMensaje,
     agregarContacto,
     actualizarImagen,
-    mostrarImagen
+    mostrarImagen,
+    obtenerContactos
  }
