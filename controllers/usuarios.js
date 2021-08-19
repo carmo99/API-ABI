@@ -105,9 +105,13 @@ const subirFotoPerfil = async (req, res = response) => {
     usuario.fotoPerfil = secure_url;
 
     await usuario.save();
+    const persona = await Usuario.findById(usuario.id)
+    .populate('contactoEmergencia1', ['nombre', 'fotoPerfil', 'telefono', 'correo'])
+    .populate('contactoEmergencia2', ['nombre', 'fotoPerfil', 'telefono', 'correo'])
+    .populate('contactoEmergencia3', ['nombre', 'fotoPerfil', 'telefono', 'correo'])
 
     res.json({
-        usuario
+        'usuario':persona
     })
 }
 
