@@ -192,3 +192,35 @@ Body:
 {
     "clasificacion" : "I_LEGAL"
 }
+
+****** Generar el OTP para verificación *******
+
+POST {{url}}/api/auth/generarOTP
+
+
+Body: 
+{
+    "correo": "alanmunive@gmail.com"
+}
+
+****** Verificar el OTP *******
+
+POST {{url}}/api/auth/verificar/OTP
+
+
+Body: 
+{
+    "correo": "alanmunive@gmail.com",
+    "otp": "t0twm3ocqe"
+}
+
+****** Cambiar la contraseña después de validar OTP *******
+
+POST {{url}}/api/auth/cambiar/contrasenia
+
+
+Body: 
+{
+    "correo": "alanmunive@gmail.com",
+    "contrasenia":"12345678"
+}
