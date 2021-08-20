@@ -21,6 +21,7 @@
     "mongoose": "^5.12.14",
     "nodemailer": "^6.6.3",
     "otp-generator": "^2.0.1",
+    "swagger-ui-express": "^4.1.6",
     "uuid": "^8.3.2"
   },
   "devDependencies": {},

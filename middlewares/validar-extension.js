@@ -4,7 +4,7 @@ const extensionValida = (req, res = response, next) => {
 
     const { name } =  req.files.archivo;
     const [,extension] = name.split('.');
-    const extensionesValidas = ['png', 'jpg', 'bmp'];
+    const extensionesValidas = ['png', 'jpg', 'bmp', 'jpeg'];
 
     if ( !extensionesValidas.includes(extension)) {
         return res.status(401).json({ 
