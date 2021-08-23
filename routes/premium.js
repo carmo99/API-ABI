@@ -4,8 +4,8 @@ const { check } = require('express-validator');
 const {validarCampos} = require('../middlewares/validar-campos');
 
 const { validarContacto, 
-        validarEspacio
-} = require('../middlewares/validar-cambios');
+        validarEspacio,
+        validarBorrado} = require('../middlewares/validar-cambios');
 
 const {validarJWT} = require('../middlewares/validar-jwt');
 
@@ -14,7 +14,8 @@ const { cambiarMensaje,
         agregarContacto,
         actualizarImagen,
         mostrarImagen,
-        obtenerContactos} = require('../controllers/premium');
+        obtenerContactos,
+        borrarContacto} = require('../controllers/premium');
 
 const { esPremiumRole } = require('../middlewares/validar-roles');
 const { validarArchivoSubir } = require('../middlewares/validar-archivo');
@@ -23,7 +24,7 @@ const { extensionValida } = require('../middlewares/validar-extension');
 
 const router = Router();
 
-router.put('/mensaje/',[
+router.put('/mensaje',[
     validarJWT,
     esPremiumRole,
     check('mensajeAyuda', 'El mensaje de ayuda no debe estar vacio').not().isEmpty(),
@@ -58,5 +59,12 @@ router.get('/contactos',
     esPremiumRole,
     validarCampos
 ], obtenerContactos);
+
+router.post('/borrar/contactos/:contacto', [
+    validarJWT,
+    esPremiumRole,
+    validarBorrado,
+    validarCampos
+],borrarContacto)
 
 module.exports = router;

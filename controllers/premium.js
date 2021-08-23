@@ -113,10 +113,38 @@ const obtenerContactos = async (req, res = response) =>
         'contactoEmergencia3':usuario.contactoEmergencia3
     })
 }
+
+const borrarContacto = async (req, res = response) =>
+{
+    const {contacto} = req.params;
+    const id = req.usuario._id;
+    switch (contacto)
+    {
+        case "contactoEmergencia1":
+            cambios = await Usuario.findByIdAndUpdate(id, {$unset:{"contactoEmergencia1":""}});
+        break;
+        case "contactoEmergencia2":
+            cambios = await Usuario.findByIdAndUpdate(id, {$unset:{"contactoEmergencia2":""}});
+        break;
+        case "contactoEmergencia3":
+            cambios = await Usuario.findByIdAndUpdate(id, {$unset:{"contactoEmergencia3":""}});
+        break;
+    }
+    const persona = await Usuario.findById(id)
+    .populate('contactoEmergencia1', ['nombre', 'fotoPerfil', 'telefono', 'correo'])
+    .populate('contactoEmergencia2', ['nombre', 'fotoPerfil', 'telefono', 'correo'])
+    .populate('contactoEmergencia3', ['nombre', 'fotoPerfil', 'telefono', 'correo'])
+
+    res.json({
+        'usuario':persona
+    })
+}
+
  module.exports = {
     cambiarMensaje,
     agregarContacto,
     actualizarImagen,
     mostrarImagen,
-    obtenerContactos
+    obtenerContactos,
+    borrarContacto
  }

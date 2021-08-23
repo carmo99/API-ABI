@@ -152,11 +152,55 @@ const validarContrasenia = async(req=request, res= response, next) => {
     next();
 
 }
+
+const validarBorrado = async(req=request, res= response, next) =>
+{
+    const {contacto} = req.params;
+    console.log(contacto);
+    switch (contacto)
+    {
+        case "contactoEmergencia1":
+            if(!req.usuario.contactoEmergencia1)
+            {
+                return res.status(500).json(
+                {
+                    msg: `Contacto de emergencia no valido`
+                });
+            }
+        break;
+        case "contactoEmergencia2":
+            if(!req.usuario.contactoEmergencia2)
+            {
+                return res.status(500).json(
+                {
+                    msg: `Contacto de emergencia no valido`
+                });
+            }
+        break;
+        case "contactoEmergencia3":
+            if(!req.usuario.contactoEmergencia3)
+            {
+                return res.status(500).json(
+                {
+                    msg: `Contacto de emergencia no valido`
+                });
+            }
+        break;
+        default:
+            return res.status(500).json(
+            {
+                msg: `Contacto de emergencia no valido`
+            });
+    }  
+    next();
+}
+
 module.exports =
 {
     validarCorreoCambio,
     validarTelefonoCambio,
     validarContacto,
     validarEspacio,
-    validarContrasenia
+    validarContrasenia,
+    validarBorrado
 }
