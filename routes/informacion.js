@@ -4,7 +4,8 @@ const { check } = require('express-validator');
 const { subirInformacion, 
         subirFotoInfo,
         obtenerNoticia, 
-        obtenerNoticias} = require('../controllers/informacion');
+        obtenerNoticias,
+        AgregarGadget} = require('../controllers/informacion');
 const { esClasificacionValida, existeInfoId } = require('../helpers/db-validators');
 const { validarArchivoSubir } = require('../middlewares/validar-archivo');
 
@@ -48,6 +49,12 @@ router.get('/todas/:clasificacion',[
     check('clasificacion').custom( esClasificacionValida ),
     validarCampos
 ], obtenerNoticias);
+
+router.put('/agregarGadget', [
+    validarJWT,
+    esAdminRole,
+    validarCampos
+], AgregarGadget);
 
 module.exports = router;
 

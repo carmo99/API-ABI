@@ -21,7 +21,7 @@ const validarCorreoCambio = async(req=request, res= response, next) =>
         {
             return res.status(500).json(
             {
-                msg: `El correo ${correo} ya está registrado`
+                msg: `El correo: ${correo} ya está registrado`
             });
         }
     }
@@ -46,7 +46,7 @@ const validarTelefonoCambio = async(req=request, res= response, next) =>
         {
             return res.status(500).json(
             {
-                msg: `El telefono ${telefono} ya está registrado`
+                msg: `El telefono: ${telefono} ya está registrado`
             });
         }
     }
@@ -63,14 +63,14 @@ const validarContacto = async(req=request, res= response, next) =>
     {
         return res.status(500).json(
         {
-            msg: `El telefono ${telefono} no está registrado`
+            msg: `El telefono: ${telefono} no está registrado`
         });
     }
     if(! existeemail)
     {
         return res.status(500).json(
         {
-            msg: `El correo ${correo} no está registrado`
+            msg: `El correo: ${correo} no está registrado`
         });
     }
     if(! existetelefono._id.equals(existeemail._id))

@@ -1,6 +1,9 @@
 const { response } = require('express');
+const otpGenerator = require('otp-generator')
+
 const path = require('path');
 const Informacion = require('../models/informacion');
+const Gadget = require('../models/gadget');
 
 const cloudinary = require('cloudinary').v2;
 cloudinary.config( process.env.CLOUDINARY_URL );
@@ -67,9 +70,20 @@ const obtenerNoticias = async (req, res = response) =>
     });
 }
 
+const AgregarGadget = async (req, res = response) =>
+{
+    const codigo = otpGenerator.generate(10, { upperCase: false, specialChars: false });
+    const gadget = new Gadget({codigo});
+    await gadget.save();
+    res.json({
+        gadget
+    })
+}
+
 module.exports = {
     subirInformacion, 
     subirFotoInfo,
     obtenerNoticia,
-    obtenerNoticias
+    obtenerNoticias,
+    AgregarGadget
 }

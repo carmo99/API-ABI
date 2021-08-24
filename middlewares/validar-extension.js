@@ -4,11 +4,12 @@ const extensionValida = (req, res = response, next) => {
 
     const { name } =  req.files.archivo;
     const [,extension] = name.split('.');
+    extension = extesion.toLowerCase();
     const extensionesValidas = ['png', 'jpg', 'jpeg'];
 
     if ( !extensionesValidas.includes(extension)) {
         return res.status(401).json({ 
-            msg: `La extensión ${extension} no es permitida - ${extensionesValidas}` 
+            msg: `La extensión: ${extension} no es permitida` 
         });
     }
     

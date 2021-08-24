@@ -32,33 +32,16 @@ const existeEmail = async (correo = '')=>
 
 const existeGadget = async (id = '') => 
 {
-    const existeGadget = await Gadget.findById(id);
-
-    if(!existeGadget)
+    const existeGadget = await Gadget.findOne({codigo:id});
+    if(existeGadget == null)
     {
-        throw new Error(`El gadget con id ${id} no está definido en la base de datos`);
+        throw new Error(`El gadget con id ${id} no está registrado en la base de datos`);
     }
-    if(!existeGadget.gadget)
+    if(existeGadget.estado == false)
     {
         throw new Error(`El gadget con id ${id} ya ha sido registrado anteriormente`);
     }
 }
-
-// const existeEmail_Cambio = async (correonuevo = '', id = '')=>
-// {
-//     console.log(id);
-//     const {correo} = await Usuario.findById(id);
-//     correonuevo = correonuevo.toLocaleLowerCase();
-//     console.log(correonuevo);
-//     if(correonuevo != correo)
-//     {
-//         const existeemail = await Usuario.findOne({correocorreonuevo});
-//         if(existeemail)
-//         {
-//             throw new Error(`El correo ${correo} ya está registrado`)
-//         }
-//     }
-// }
 
 const existeUsuarioPorId = async (id = '')=>
 {

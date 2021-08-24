@@ -1,10 +1,16 @@
 const {Schema, model} = require('mongoose');
 
 const GadgetSchema = Schema({
-    gadget:
+    codigo: 
+    {
+        type: String,
+        required: [true, "El código es obligatorio"]
+    },
+    estado:
     {
         type: Boolean,
-        required: [true, "El gadget es obligatorio"]
+        required: [true, "El estado es obligatorio"],
+        default: true
     }
 });
 

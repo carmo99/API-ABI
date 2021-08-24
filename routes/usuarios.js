@@ -43,7 +43,7 @@ router.put('/',[
 
 router.put('/gadget',[
     validarJWT,
-    check('gadget', 'No es un ID de Gadget Valido').isMongoId(),
+    check('gadget', 'No es un ID de Gadget Valido').isLength(10),
     check('gadget').custom(existeGadget),
     validarCampos    
 ], registrarGadget);

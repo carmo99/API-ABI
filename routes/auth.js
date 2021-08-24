@@ -15,7 +15,7 @@ const { login,
 const router = Router();
 
 router.post('/login',[
-    check('correo', 'El correo es obligatorio').isEmail(),
+    check('correo', 'El correo no es válido').isEmail(),
     check('contrasenia', 'La contraseña es obligatoria').not().isEmpty(),
     validarCampos
 ], login );
@@ -26,23 +26,21 @@ router.post('/verificacion', [
 ], verificarSesion)
 
 router.post('/generarOTP', [
-    check('correo', 'El correo es obligatorio').isEmail(),
+    check('correo', 'El correo no es válido').isEmail(),
     validarCampos
 ], generarOTP)
 
 router.post('/verificar/OTP', [
-    check('correo', 'El correo es obligatorio').isEmail(),
+    check('correo', 'El correo no es válido').isEmail(),
     check('otp', 'El otp es obligatorio').not().isEmpty(),
     validarCampos
 ], verificaOTP)
 
 router.post('/cambiar/contrasenia', [
-    check('correo', 'El correo es obligatorio').isEmail(),
+    check('correo', 'El correo no es válido').isEmail(),
     check('contrasenia', 'La contraseña debe de ser mayor o igual a 8 caracteres').isLength({min: 8}),
     validarCampos
 ], cambiarContraseniaOTP)
-
-
 
 module.exports = router;
 

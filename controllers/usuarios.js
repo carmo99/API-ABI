@@ -69,9 +69,9 @@ const usuariosDelete = async (req, res = response) => {
 
 const registrarGadget = async (req, res = response) => {
     const id = req.usuario._id;
-    let usuario = await Usuario.findByIdAndUpdate(id, { gadget: req.body.gadget });
+    let usuario = await Usuario.findByIdAndUpdate(id, { gadget: req.body.codigo });
     usuario = await Usuario.findByIdAndUpdate(id, { rol: 'PREMIUM_ROLE' });
-    const gadget = await Gadget.findByIdAndUpdate(req.body.gadget, { gadget: false });
+    const existeGadget = await Gadget.findOneAndUpdate({codigo:req.body.gadget}, { estado: false });
     res.json(usuario);
 }
 
