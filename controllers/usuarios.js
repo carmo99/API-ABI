@@ -25,6 +25,12 @@ const usuarioGet = async (req, res = response) => {
     });
 }
 
+const usuariosVerifica = async (req, res) => {
+    res.json({
+        'msg':'OK'
+    })   
+}
+
 const usuariosPost = async (req, res = response) => {
     const { nombre, contrasenia, telefono } = req.body;
     const correo = req.body.correo.toLowerCase();
@@ -123,5 +129,6 @@ module.exports = {
     usuariosDelete,
     registrarGadget,
     cambiarContraseña,
+    usuariosVerifica,
     subirFotoPerfil
 }
