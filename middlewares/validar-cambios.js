@@ -156,7 +156,6 @@ const validarContrasenia = async(req=request, res= response, next) => {
 const validarBorrado = async(req=request, res= response, next) =>
 {
     const {contacto} = req.params;
-    console.log(contacto);
     switch (contacto)
     {
         case "contactoEmergencia1":

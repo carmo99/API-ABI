@@ -58,6 +58,10 @@ const usuarioSchema = Schema({
     gadget:{
         type: Schema.Types.ObjectId,
         ref: 'Gadget',
+    },
+    ubicacionEmergencia:{
+        type: Array,
+        default: []
     }
 });
 

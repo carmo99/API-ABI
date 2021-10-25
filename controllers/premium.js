@@ -23,6 +23,8 @@ const agregarContacto = async (req, res = response) =>
 {
     const id = req.usuario._id;
     let cambios = null;
+    const usuario = await Usuario.findById(req.idContacto);
+    console.log(usuario);
     switch (req.contactoLibre)
     {
         case 1:
@@ -34,7 +36,11 @@ const agregarContacto = async (req, res = response) =>
         case 3:
             cambios = await Usuario.findByIdAndUpdate(id, {contactoEmergencia3: req.idContacto});
         break;
+
     }
+    usuario.ubicacionEmergencia.push(id);
+    await usuario.save();
+    
     res.json(cambios);
 }
 
@@ -118,18 +124,27 @@ const borrarContacto = async (req, res = response) =>
 {
     const {contacto} = req.params;
     const id = req.usuario._id;
+    const usuario = await Usuario.findById(id);
+    let id_usuario_borrado;
     switch (contacto)
     {
         case "contactoEmergencia1":
+            id_usuario_borrado = usuario.contactoEmergencia1._id;
             cambios = await Usuario.findByIdAndUpdate(id, {$unset:{"contactoEmergencia1":""}});
         break;
         case "contactoEmergencia2":
+            id_usuario_borrado = usuario.contactoEmergencia2._id;
             cambios = await Usuario.findByIdAndUpdate(id, {$unset:{"contactoEmergencia2":""}});
         break;
         case "contactoEmergencia3":
+            id_usuario_borrado = usuario.contactoEmergencia3._id;
             cambios = await Usuario.findByIdAndUpdate(id, {$unset:{"contactoEmergencia3":""}});
         break;
     }
+    const usuario_borrado = await Usuario.findById({_id: id_usuario_borrado});
+    const index = usuario_borrado.ubicacionEmergencia.indexOf(id);
+    usuario_borrado.ubicacionEmergencia.splice(index, 1);
+    await usuario_borrado.save();
     const persona = await Usuario.findById(id)
     .populate('contactoEmergencia1', ['nombre', 'fotoPerfil', 'telefono', 'correo'])
     .populate('contactoEmergencia2', ['nombre', 'fotoPerfil', 'telefono', 'correo'])
