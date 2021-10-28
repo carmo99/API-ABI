@@ -46,14 +46,7 @@ const agregarContacto = async (req, res = response) =>
 
 const actualizarImagen = async(req, res = response) => {
 
-    const id = req.usuario._id;
-
-    const usuario = await Usuario.findById(id);
-    if (!usuario) {
-        return res.status(400).json({
-            msg: `No existe un usuario con el id ${ id }`
-        });
-    }
+    const usuario = req.usuario;
 
     //Limpiar imagene previas
     if ( usuario.fotoDia ) {
@@ -61,9 +54,7 @@ const actualizarImagen = async(req, res = response) => {
         const nombrArr  = usuario.fotoDia.split('/');
         const nombre    = nombrArr[ nombrArr.length - 1 ];
         const[ public_id ] = nombre.split('.');
-
-        cloudinary.uploader.destroy( public_id );
-       
+        cloudinary.uploader.destroy( public_id )   
     }
     
     const{ tempFilePath } = req.files.archivo;
