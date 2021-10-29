@@ -39,6 +39,7 @@ const agregarContacto = async (req, res = response) =>
 
     }
     usuario.ubicacionEmergencia.push(id);
+    usuario.nombreEmergencia.push(req.usuario.nombre);
     await usuario.save();
     
     res.json(cambios);
@@ -135,6 +136,7 @@ const borrarContacto = async (req, res = response) =>
     const usuario_borrado = await Usuario.findById({_id: id_usuario_borrado});
     const index = usuario_borrado.ubicacionEmergencia.indexOf(id);
     usuario_borrado.ubicacionEmergencia.splice(index, 1);
+    usuario_borrado.nombreEmergencia.splice(index, 1);
     await usuario_borrado.save();
     const persona = await Usuario.findById(id)
     .populate('contactoEmergencia1', ['nombre', 'fotoPerfil', 'telefono', 'correo'])

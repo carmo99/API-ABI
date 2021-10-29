@@ -62,6 +62,10 @@ const usuarioSchema = Schema({
     ubicacionEmergencia:{
         type: Array,
         default: []
+    },
+    nombreEmergencia:{
+        type: Array,
+        default: []
     }
 });
 
