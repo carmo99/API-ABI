@@ -35,6 +35,7 @@ router.put('/contactoNuevo', [
     validarJWT,
     esPremiumRole,
     validarEspacio,
+    check('telefono', 'El telefono deben ser solo numeros').isNumeric(),
     validarContacto
 ], agregarContacto);
 

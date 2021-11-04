@@ -37,6 +37,7 @@ router.put('/',[
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
     check('correo', 'El correo no es válido').isEmail(),
     validarCorreoCambio,
+    check('telefono', 'El telefono deben ser solo numeros').isNumeric(),
     check('telefono', 'El telefono debe ser de 10 digitos').isLength(10),
     validarTelefonoCambio,
     validarCampos    
@@ -61,6 +62,7 @@ router.post('/verificar',[
     check('correo', 'El correo no es válido').isEmail(),
     check('correo').custom( existeEmail ),
     check('contrasenia', 'La contraseña debe de ser mayor o igual a 8 caracteres').isLength({min: 8}),
+    check('telefono', 'El telefono deben ser solo numeros').isNumeric(),
     check('telefono', 'El telefono debe ser de 10 digitos').isLength(10),
     check('telefono').custom( existeTelefono ),
     validarCampos
@@ -71,6 +73,7 @@ router.post('/salvar',[
     check('correo', 'El correo no es válido').isEmail(),
     check('correo').custom( existeEmail ),
     check('contrasenia', 'La contraseña debe de ser mayor o igual a 8 caracteres').isLength({min: 8}),
+    check('telefono', 'El telefono deben ser solo numeros').isNumeric(),
     check('telefono', 'El telefono debe ser de 10 digitos').isLength(10),
     check('telefono').custom( existeTelefono ),
     validarCampos
