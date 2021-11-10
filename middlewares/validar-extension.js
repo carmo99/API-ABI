@@ -8,7 +8,7 @@ const extensionValida = (req, res = response, next) => {
 
     if ( !extensionesValidas.includes(extension)) {
         return res.status(401).json({ 
-            msg: `La extensión: ${extension} no es permitida` 
+            msg: `Las extensiones permitidas son: png, jpg, jpeg` 
         });
     }
     
